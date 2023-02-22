@@ -32,7 +32,7 @@ class Mqtt {
 		}));
 		
 		this.getClient().on('connect', () => {
-			logger.info(`Connected to MQTT: ${connectUrl}`);
+			logger.info(`Conectado ao MQTT: ${connectUrl}`);
 		
 			mqttSubscribers.subscribeAll();
 		});

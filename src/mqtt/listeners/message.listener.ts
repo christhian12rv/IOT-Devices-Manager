@@ -16,7 +16,7 @@ export default function(): void {
 	const client = Mqtt.getInstance().getClient();
 	
 	client.on('message', async (topic, payload) => {
-		logger.info(`MQTT received Message: ${topic}`);
+		logger.info(`Mensagem recebida do MQTT: ${topic}`);
 		
 		payload = JSON.parse(payload.toString());
 		
