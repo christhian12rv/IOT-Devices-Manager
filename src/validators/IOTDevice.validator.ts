@@ -78,12 +78,14 @@ export const update = Joi.object().keys({
 		}),
 	name: Joi
 		.string()
-		.required()
+		.optional()
 		.messages({
 			'string.base': 'Nome é inválido',
-			'any.required':'Nome é obrigatório',
 		})
 		.external(async (value) => {
+			if (!value)
+				return;
+				
 			const iotDevice = await IOTDeviceService.findByName(value);
 
 			if (iotDevice)
@@ -91,18 +93,16 @@ export const update = Joi.object().keys({
 		}),
 	value: Joi
 		.number()
+		.optional()
 		.strict()
-		.required()
 		.messages({
 			'number.base': 'Valor é inválido',
-			'any.required':'Valor é obrigatório',
 		}),
 	suffix: Joi
 		.string()
-		.required()
+		.optional()
 		.messages({
 			'string.base': 'Sufixo é inválido',
-			'any.required':'Sufixo é obrigatório',
 		}),
 }).options({ abortEarly : false, });
 

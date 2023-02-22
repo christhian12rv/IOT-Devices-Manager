@@ -5,6 +5,9 @@
 		"typeRoots": [
 			"./src/@types",
 			"./node_modules/@types"
-		]
+		],
+		"moduleResolution": "node",
+		"resolveJsonModule": true
 	},
+	"include": ["**/*.ts", "**/**.json", "src/jest.config.js"]
 }

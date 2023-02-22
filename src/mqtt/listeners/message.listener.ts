@@ -1,4 +1,3 @@
-import { MqttClient } from 'mqtt';
 import logger from '../../config/logger';
 import Mqtt from '../../config/Mqtt';
 import MQTTMessages from '../../controllers/MQTTMessages';

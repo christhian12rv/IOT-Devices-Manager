@@ -46,7 +46,7 @@ class IOTDevice {
 		logger.info(`Chamando findByName de ${req.originalUrl}`);
 
 		const { name, } = req.params;
-
+		
 		try {
 			const iotDevice = await iotDeviceService.findByName(name);
 			

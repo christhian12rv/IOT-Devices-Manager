@@ -52,6 +52,7 @@ class IOTDeviceMiddleware {
 		try {
 			await IOTDeviceValidator.update.validateAsync( { id, ...data, });
 		} catch (e) {
+			logger.error(e);
 			const formatedErrors = e.msg ? [e.msg] : formatErrors(e.details);
 			const message = 'Ocorreram alguns erros ao atualizar dispositivo IOT';
 			logger.error(message);
