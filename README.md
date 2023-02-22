@@ -14,7 +14,6 @@
         <li><a href="#rodando-o-projeto">Rodando o projeto</a></li>
       </ul>
     </li>
-    <li><a href="#ilustrações">Ilustrações</a></li>
     <li><a href="#explicação-do-projeto">Explicação do projeto</a></li>
   </ol>
 </details>
