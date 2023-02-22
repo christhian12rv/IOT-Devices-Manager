@@ -102,13 +102,13 @@ Outra maneira é instalar todas as ferramentas necessárias para rodar o projeto
 
 #### Docker
 
-1. Na primeira vez que for rodar o projeto, será necessário fazer o push das configurações do prisma para o banco de dados.
-    ```sh
-    $ docker exec iot-devices-manager-server npx prisma db push --schema=./src/prisma/schema.prisma
-    ```
 1. Rode o projeto. Se preferir, pode-se adicionar o comando "-d" para rodar em background.
     ```sh
     $ docker-compose up
+    ```
+2. Na primeira vez que rodar o projeto, será necessário fazer o push das configurações do prisma para o banco de dados.
+    ```sh
+    $ docker exec iot-devices-manager-server npx prisma db push --schema=./src/prisma/schema.prisma
     ```
 3. Para finalizar os containeres, rode o seguinte comando.
     ```sh
@@ -129,7 +129,7 @@ Outra maneira é instalar todas as ferramentas necessárias para rodar o projeto
 
 2. Na primeira vez que for rodar o projeto, rode o seguinte comando
     ```sh
-    $ npx prisma migrate dev --schema=./src/prisma/schema.prisma
+    $ npx prisma db push --schema=./src/prisma/schema.prisma
     ```
     
 3. Execute o projeto
