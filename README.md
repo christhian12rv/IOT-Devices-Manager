@@ -104,7 +104,6 @@ Outra maneira é instalar todas as ferramentas necessárias para rodar o projeto
 
 1. Na primeira vez que for rodar o projeto, será necessário fazer o push das configurações do prisma para o banco de dados.
     ```sh
-    $ docker exec iot-devices-manager-server npx prisma generate --schema=./src/prisma/schema.prisma
     $ docker exec iot-devices-manager-server npx prisma db push --schema=./src/prisma/schema.prisma
     ```
 1. Rode o projeto. Se preferir, pode-se adicionar o comando "-d" para rodar em background.
@@ -128,9 +127,8 @@ Outra maneira é instalar todas as ferramentas necessárias para rodar o projeto
     MQTT_PASSWORD=SENHA_MQTT-EXEMPLO:public
     ```
 
-2. Na primeira vez que for rodar o projeto, rode os 2 seguintes comandos
+2. Na primeira vez que for rodar o projeto, rode o seguinte comando
     ```sh
-    $ npx prisma generate --schema=./src/prisma/schema.prisma
     $ npx prisma migrate dev --schema=./src/prisma/schema.prisma
     ```
     
