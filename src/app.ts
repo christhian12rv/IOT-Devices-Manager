@@ -3,7 +3,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import logger from './config/logger';
 import config from './config/config';
-import * as mqttConfig from './config/mqttConfig';
+import Mqtt from './config/Mqtt';
 import iotDeviceRoute from './routes/IOTDevice.route';
 
 export default class App {
@@ -39,6 +39,6 @@ export default class App {
 	}
 
 	private connectMQTT(): void {
-		mqttConfig.connect();
+		Mqtt.getInstance().connect();
 	}
 }

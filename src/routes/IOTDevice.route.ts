@@ -6,7 +6,7 @@ const iotDeviceRoute = Router();
 
 iotDeviceRoute.get('/', iotDeviceController.findAll);
 iotDeviceRoute.get('/:id', IOTDeviceMiddleware.findById, iotDeviceController.findById);
-iotDeviceRoute.get('/name/:name', iotDeviceController.findByName);
+iotDeviceRoute.get('/name/:name', IOTDeviceMiddleware.findByName, iotDeviceController.findByName);
 iotDeviceRoute.post('/', IOTDeviceMiddleware.create, iotDeviceController.create);
 iotDeviceRoute.put('/:id', IOTDeviceMiddleware.update, iotDeviceController.update);
 iotDeviceRoute.delete('/:id', IOTDeviceMiddleware.delete, iotDeviceController.delete);

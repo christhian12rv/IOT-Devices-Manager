@@ -17,13 +17,21 @@ export const findById = Joi.object().keys({
 		}),
 });
 
+export const findByName = Joi.object().keys({
+	name: Joi
+		.string()
+		.required()
+		.messages({
+			'string.base': 'Nome é inválido',
+			'any.required':'Nome é obrigatório',
+		}),
+});
+
 export const create = Joi.object().keys({
 	name: Joi
 		.string()
 		.required()
-		.alphanum()
 		.messages({
-			'string.alphanum': 'Nome é inválido',
 			'string.base': 'Nome é inválido',
 			'any.required':'Nome é obrigatório',
 		})
@@ -71,9 +79,7 @@ export const update = Joi.object().keys({
 	name: Joi
 		.string()
 		.required()
-		.alphanum()
 		.messages({
-			'string.alphanum': 'Nome é inválido',
 			'string.base': 'Nome é inválido',
 			'any.required':'Nome é obrigatório',
 		})

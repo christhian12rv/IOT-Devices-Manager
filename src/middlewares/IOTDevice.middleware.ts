@@ -1,15 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import { ValidationError } from 'joi';
 import logger from '../config/logger';
 import formatErrors from '../utils/formatErrors';
 import * as IOTDeviceValidator from '../validators/IOTDevice.validator';
 
 class IOTDeviceMiddleware {
 	public async findById(req: Request, res: Response, next: NextFunction): Promise<Response> {
-		const { id, } = req.params;
-
 		try {
-			await IOTDeviceValidator.findById.validateAsync({ id, });
+			await IOTDeviceValidator.findById.validateAsync(req.params);
+		} catch (e) {
+			const formatedErrors = e.msg ? [e.msg] : formatErrors(e.details);
+			const message = 'Ocorreram alguns erros ao buscar dispositivo IOT';
+			logger.error(message);
+			return res.status(400).json({ errors: formatedErrors, message, });
+		}
+
+		next();
+	}
+
+	public async findByName(req: Request, res: Response, next: NextFunction): Promise<Response> {
+		try {
+			await IOTDeviceValidator.findByName.validateAsync(req.params);
 		} catch (e) {
 			const formatedErrors = e.msg ? [e.msg] : formatErrors(e.details);
 			const message = 'Ocorreram alguns erros ao buscar dispositivo IOT';

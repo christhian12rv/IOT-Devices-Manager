@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  server:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iot-devices-manager-server
+    env_file:
+      - ./.env.dev
+    ports:
+      - "9000:9000"
+    restart: always

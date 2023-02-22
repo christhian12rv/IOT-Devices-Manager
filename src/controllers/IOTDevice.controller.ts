@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import logger from '../config/logger';
+import Mqtt from '../config/Mqtt';
+import MQTTTopicsEnum from '../enums/mqtt/MQTTTopics.enum';
 import iotDeviceService from '../services/IOTDevice.service';
 
 class IOTDevice {
@@ -71,6 +73,9 @@ class IOTDevice {
 			const message = 'Dispositivo IOT criado com sucesso';
 			logger.info(message);
 
+			const client = Mqtt.getInstance().getClient();
+			client.publish(MQTTTopicsEnum.IOT_DEVICES__CREATE__RESPONSE, JSON.stringify({ data: { iotDevice, }, message, }));
+
 			return res.status(200).send({ message, iotDevice, });
 		} catch(e) {
 			const message = 'Ocorreram erros internos ao criar dispositivo IOT';
@@ -94,6 +99,9 @@ class IOTDevice {
 			const message = `Dispositivo IOT com id ${data.id} atualizado com sucesso`;
 			logger.info(message);
 
+			const client = Mqtt.getInstance().getClient();
+			client.publish(MQTTTopicsEnum.IOT_DEVICES__UPDATE__RESPONSE, JSON.stringify({ data: { iotDevice, }, message, }));
+
 			return res.status(200).send({ message, iotDevice, });
 		} catch(e) {
 			const message = 'Ocorreram erros internos ao atualizar dispositivo IOT';
@@ -113,6 +121,9 @@ class IOTDevice {
 			
 			const message = `Dispositivo IOT com id ${id} deletado com sucesso`;
 			logger.info(message);
+
+			const client = Mqtt.getInstance().getClient();
+			client.publish(MQTTTopicsEnum.IOT_DEVICES__DELETE__RESPONSE, JSON.stringify({ data: { iotDevice, }, message, }));
 
 			return res.status(200).send({ message, iotDevice, });
 		} catch(e) {

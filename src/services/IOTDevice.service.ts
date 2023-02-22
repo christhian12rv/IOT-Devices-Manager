@@ -1,14 +1,14 @@
-import prisma from '../config/db';
+import Database from '../config/Database';
 import IOTDeviceInterface from '../interfaces/IOTDevice.interface';
 
 class IOTDeviceService {
 	public async findAll(): Promise<IOTDeviceInterface[]> {
-		const iotDevices = await prisma.iOTDevice.findMany();
+		const iotDevices = await Database.getInstance().getDatabase().iOTDevice.findMany();
 		return iotDevices;
 	}
 
 	public async findById(id): Promise<IOTDeviceInterface> {
-		const iotDevice = await prisma.iOTDevice.findUnique({
+		const iotDevice = await Database.getInstance().getDatabase().iOTDevice.findUnique({
 			where: {
 				id,
 			},
@@ -18,7 +18,7 @@ class IOTDeviceService {
 	}
 
 	public async findByName(name): Promise<IOTDeviceInterface> {
-		const iotDevice = await prisma.iOTDevice.findUnique({
+		const iotDevice = await Database.getInstance().getDatabase().iOTDevice.findUnique({
 			where: {
 				name,
 			},
@@ -28,7 +28,7 @@ class IOTDeviceService {
 	}
 
 	public async create({ name, value, suffix, }): Promise<IOTDeviceInterface> {
-		const iotDevice = await prisma.iOTDevice.create({
+		const iotDevice = await Database.getInstance().getDatabase().iOTDevice.create({
 			data: {
 				name,
 				value,
@@ -40,7 +40,7 @@ class IOTDeviceService {
 	}
 
 	public async update({ id, name, value, suffix, }): Promise<IOTDeviceInterface> {
-		const iotDevice = await prisma.iOTDevice.update({
+		const iotDevice = await Database.getInstance().getDatabase().iOTDevice.update({
 			where: {
 				id,
 			},
@@ -55,7 +55,7 @@ class IOTDeviceService {
 	}
 
 	public async delete(id): Promise<IOTDeviceInterface> {
-		const iotDevice = await prisma.iOTDevice.delete({
+		const iotDevice = await Database.getInstance().getDatabase().iOTDevice.delete({
 			where: {
 				id,
 			},
